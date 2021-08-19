@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="setValue()">
+    <form >
+        <input type="button" onclick="windowClose()">
+        <div id="divChild"></div>
+    </form>
+    <script>
+        function setValue(){
+            //alert(window.opener.parentParam);
+            document.getElementById('divChild').innerHTML = window.opener.parentParam;
+        }
+
+        function windowClose(){
+            let subParam = "B視窗參數";
+            window.opener.windowOpenReturnFunc(subParam);//執行父視窗的function
+            window.close();//關閉子視窗
+        };
+    </script>
+</body>
+</html>

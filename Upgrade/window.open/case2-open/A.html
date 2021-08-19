@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="common.js"></script>
+</head>
+<body>
+    <form id="form1">
+        <input type="button" onclick="windowOpen()">
+        <div id="divParent"></div>
+
+    </form>
+    <script>
+        var parentParam = "A視窗參數";
+
+        function windowOpen(){
+            changeParentParam();
+            window.open("B.html", "_blank",  "width=300px,height=100px,scrollbars=1");
+        }
+
+        function changeParentParam(){
+            //parentParam = "修改過的A視窗參數";
+            createNewObj();
+        }
+
+        function createNewObj(){
+            parentParam = new DefectInfo();
+        }
+
+        // //注意父視窗要宣告成global function
+        function windowOpenReturnFunc(ret) {
+                //ret為子視窗回傳的值
+                //alert("子視窗回傳的值:" + ret);
+                document.getElementById('divParent').innerHTML = ret;
+            }
+    </script>
+</body>
+</html>

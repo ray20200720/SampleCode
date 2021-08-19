@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" onclick="showmodal()"></button>
+    <input type="button" onclick="sayHi()"></button>
+    <script>
+        newWin = null;
+        function showmodal(){
+            newWin = window.open('modalWindow.html', 'newWin','height=200,width=400,top=200,left=200,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no,status=no');
+        }
+
+        window.onfocus = function() {
+            if(newWin){
+                if(!newWin.closed){
+                    newWin.focus();
+                }
+            }
+        };
+
+        window.document.onfocus = function(){
+            if(newWin){
+                if(!newWin.closed){
+                    newWin.focus();
+                }
+            }
+        };
+
+        window.document.onclick = function(){
+            if(newWin){
+                if(!newWin.closed){
+                    newWin.focus();
+                }
+            }
+        };
+
+        window.document.οndblclick=function (){  
+            if(newWin){
+                if(!newWin.closed)
+                    newWin.focus();
+            } 
+        };
+        
+        function sayHi(){
+            alert('Hi');
+        }
+    </script>
+</body>
+</html>

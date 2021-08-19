@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form1">
+        <input type="button" value="另開視窗" name="" id="btnParent" onclick="showMessage()">
+    </form>
+    <script>
+        function showMessage(){
+            var parentParam = "我是A視窗的參數";
+            var ret = window.showModalDialog("B.html", parentParam, "dialogWidth=500px;dialogHeight=500px");
+            alert("子視窗回傳值:" + ret);
+        };
+    </script>
+</body>
+</html>
