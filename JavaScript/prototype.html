@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Prototype</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        Prototype
+    </div>
+    </form>
+    
+    <script language="javascript">
+        //https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects
+        
+        //物件基本概念 [https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/Basics#object_basics]
+        // var person = {};
+
+        // var person = {
+        //     name :  ['Bob', 'Smith'],
+        //     age : 32,
+        //     gender : 'male',
+        //     interests : ['music', 'skiing'],
+        //     bio : function() {
+        //         alert(this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+        //     },
+        //     greeting: function() {
+        //         alert('Hi! I\'m ' + this.name[0] + '.');
+        //     }
+        // };
+
+        // person.name
+        // person.age
+        
+        //適合初學者的 OO JaveScript [https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/Object-oriented_JS]
+
+        //用一般函式定義一個人
+        // function createNewPerson(name) {
+        //     var obj = {};
+        //     obj.name = name;
+        //     obj.greeting = function () {
+        //         alert('Hi! I\'m ' + this.name + '.');
+        //     }
+        //     return obj;
+        // }
+
+        // var salva = createNewPerson('salva');
+        // salva.name;
+        // salva.greeting();
+        
+        //建構子函式
+        function Person(name) {
+            this.name = name;
+            this.greeting = function() {
+                alert('Hi! I\'m ' + this.name + '.');
+            };
+        }
+
+        var p1 = new Person('Bob');
+        var p2 = new Person('Sarah');
+        p1.name;
+        p1.greeting();
+        p2.name;
+        //p2.greeting();
+
+
+        //建立物件實例的其他方法
+        //Object() 建構子
+        // var person1 = new Object();
+        // person1.name = 'Chris';
+        // person1['age'] = 38;
+        // person1.greeting = function() {
+        //     alert('Hi! I\'m ' + this.name + '.');
+        // }
+
+        // //可將一組物件實字傳送給 Object() 建構子作為參數，藉以預先填入屬性＼函式。
+        // var person1 = new Object({
+        //     name : 'Chris',
+        //     age : 38,
+        //     greeting : function() {
+        //         alert('Hi! I\'m ' + this.name + '.');
+        //     }
+        // });
+
+        // //使用 create() 函式: 根據現有物件，建立新的物件
+        // var person2 = Object.create(person1);
+        // person2.name
+        // person2.greeting()
+
+        // //物件原型 [https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/Object_prototypes]
+        // function Person(first, last, age, gender, interests) {
+        //     // property and method definitions
+        // };
+        // var person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+        // //原型物件上所定義的成員
+        // //Person() 建構子 — name、age、gender、interests、bio、greeting
+        
+        // //原型屬性
+        // Person.prototype
+        // Object.prototype
+
+
+        // //建構子的屬性
+        // //person1.constructor
+        // //person2.constructor
+        // //var person3 = new person1.constructor('Karen', 'Stephenson', 26, 'female', ['playing drums', 'mountain climbing']);
+
+        // person3.name.first
+        // person3.age
+        // person3.bio()
+
+        // //修改原型
+        // Person.prototype.farewell = function() {
+        //     alert(this.name.first + ' has left the building. Bye for now!');
+        // }
+
+        // person1.farewell();
+
+
+        // //JavaScript 中的「繼承」 [https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/Inheritance]
+        // //建構子只定義了屬性
+        // function Person(first, last, age, gender, interests) {
+        //     this.name = {
+        //         first,
+        //         last
+        //     };
+        //     this.age = age;
+        //     this.gender = gender;
+        //     this.interests = interests;
+        // };
+        // //函式定義於建構子的原型之上
+        // Person.prototype.greeting = function() {
+        //     alert('Hi! I\'m ' + this.name.first + '.');
+        // };
+
+        // //定義 Teacher() 建構子函式
+        // function Teacher(first, last, age, gender, interests, subject) {
+        //     Person.call(this, first, last, age, gender, interests);
+        //     this.subject = subject;
+        // }
+
+        // //設定 Teacher() 的原型與建構子參考
+        // Teacher.prototype = Object.create(Person.prototype);
+        // Teacher.prototype.constructor = Teacher;
+
+        // //給 Teacher() 新的 greeting() 函式
+        // Teacher.prototype.greeting = function() {
+        //     var prefix;
+
+        //     if(this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+        //         prefix = 'Mr.';
+        //     } else if(this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+        //         prefix = 'Mrs.';
+        //     } else {
+        //         prefix = 'Mx.';
+        //     }
+
+        //     alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
+        // };
+
+        // //用Teacher() 建立物件實例
+        // var teacher1 = new Teacher('Dave', 'Griffiths', 31, 'male', ['football', 'cookery'], 'mathematics');
+        // teacher1.name.first;
+        // teacher1.interests[0];
+        // teacher1.bio();
+        // teacher1.subject;
+        // teacher1.greeting();
+
+        
+
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        Here
+    </div>
+    <div>
+        Here
+    </div>
+    <div>
+        And Here
+    </div>
+    </form>
+    
+    <script language="javascript">
+
+        // Case 1: this 值由被呼叫的函式來決定
+        const test = {
+            prop: 42,
+            func: function() {
+                return this.prop;
+            },
+        };
+
+        console.log(test.func());
+        // expected output: 42
+
+        // 全域環境下
+        // Case 2: this 值在所有函式以外的全域執行環境下，會被當作全域物件，無論是否處於嚴格模式。
+        console.log(this.document === document); // true
+
+        // 在網路瀏覽器中，window 物件也是全域物件。
+        console.log(this === window); // true
+
+        this.a = 37;
+        console.log(window.a); // 37
+
+        this.b = "MDN";
+        console.log(window.b)  // "MDN"
+        console.log(b)         // "MDN"
+
+        // 函式環境下
+        // Case 3:簡易呼叫
+        // 因為以下程式碼並不處於嚴謹模式下、而 this 值也沒被呼叫（call）設定，this 會變成全域物件，在瀏覽器之下則會變成 window。
+        function f1(){
+            return this;
+        }
+
+        //在瀏覽器中：
+        console.log(f1() === window); // true
+
+        //Node中:
+        //f1() === global; // true
+
+        //然而，在嚴格模式下，this 值會在進入執行環境時建立並維持該狀態。因此，下例的 this 預設值是 undefined：
+        function f2(){
+            "use strict"; // 嚴格模式
+            return this;
+        }
+
+        console.log(f2() === undefined); //true
+        //所以在嚴格模式下，如果 this 沒有定義到執行環境內，其預設值就會是 undefined。
+
+        //要從某個語境訪問另一個 this 語境的值，請使用 call 或 apply:
+        // 物件可以被當作call或apply的第一個參數，而this會綁定該物件
+        var obj = { a: 'Custom' };
+        
+        // 此屬性a為全域物件
+        var a = 'Global';
+
+        function whatThis(arg) {
+            return this.a;
+        }
+
+        whatThis();  // 'Global'
+        whatThis.call(obj);  // 'Custom'
+        whatThis.apply(obj); // 'Custom'
+
+        function add(c, d) {
+            return this.a + this.b + c + d;
+        }
+
+        var o = { a: 1, b : 3};
+
+        // 第一個參數（parameter）是調用了 this 的物件，
+        // 後續參數（parameters）會作為函式呼叫內的參數（arguments）而通過
+        add.call(o, 5, 7); // 16
+
+        // 第一個參數（parameter）是調用了 this 的物件，
+        // 第二個參數的陣列作為函式呼叫內的參數（arguments）之構件
+        add.apply(o, [10, 20]); //34
+
+        function bar() {
+            console.log(Object.prototype.toString.call(this));
+        }   
+
+        //使用 call 和 apply 時，如果被輸入作為 this 的值不是物件，JavaScript 內建的 ToObject 運算符會試著把被輸入的值轉變為物件。
+        bar.call(7);     // [object Number]
+        bar.call('foo'); // [Object String]
+
+        //bind 方法
+        //呼叫 f.bind(someObject) 會建立和 f 的主體與作用域相同之新函式；但無論函數怎麼被調用，原始函數的 this 在新函數將永遠與 bind 的第一個參數綁定起來。
+        function f() {
+            return this.a;
+        }
+
+        var g = f.bind({a: 'azerty'});
+        console.log(g()); // azerty
+
+        var h = g.bind({a: 'yoo'}); // bind 只能使用一次！
+        console.log(h()); // azerty
+
+        var o = {a: 37, f: f, g: g, h: h};
+        console.log(o.f(), o.g(), o.h()); // 37, azerty, azerty
+
+        //箭頭函式
+        console.log('=====箭頭函式=====');
+        //在箭頭函式下，this 值保留了其在詞法作用域 的 this 值。在全域程式碼內，則設為全域物件：
+        // var globalObject = this;
+        // var foo = (() => this);
+        // console.log(foo() === globalObject); // true
+
+        // var obj = { foo: foo};
+        // console.log(obj.foo() === globalObject);
+
+        // 建立一個物件，其方法 bar 含有回傳自己的 this 函式。回傳函式作為箭頭函數而建立，
+        // 因此該函式的 this 將永遠與外圍函式（enclosing function）的 this 綁定。
+        // bar 的值可在呼叫內設立，which in turn sets the value of the returned function.   
+        var obj = { bar: function() {
+                            var x = (() => this);
+                            return x;
+                        }
+                };
+        var fn = obj.bar();
+        console.log(fn() === obj);
+
+    </script>
+</body>
+</html>

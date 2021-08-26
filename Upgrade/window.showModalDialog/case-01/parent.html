@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript">
+        //亂數
+        function fnRandom(iModifier) {
+            return parseInt(Math.random() * iModifier);
+        }
+        //設定打開視窗的參數
+        function fnSetValues() {
+            var iHeight = oForm.oHeight.options[
+                oForm.oHeight.selectedIndex].text;
+            if (iHeight.indexOf("Random") > -1) {
+                iHeight = fnRandom(document.body.clientHeight);
+            }
+            var sFeatures = "dialogHeight: " + iHeight + "px;";
+            return sFeatures;
+        }
+        function fnOpen() {
+            //呼叫設定參數涵式
+            var sFeatures = fnSetValues();
+
+            //傳遞參數
+            var sDialogArguments = document.getElementById("txtParent").value;
+            //打開視窗
+
+            var retValue = window.showModalDialog("child.html", sDialogArguments,
+                sFeatures);
+            //顯示返回值
+            //alert(retValue);
+            var divElement = document.getElementById("divChild");
+            divElement.innerHTML = retValue;
+        }
+
+    </script>
+    <title></title>
+</head>
+    <body>
+ <form name="oForm">
+ Dialog Height
+  <select name="oHeight">
+    <option>-- Random --</option>
+    <option>150</option>
+    <option>200</option>
+    <option>250</option>
+    <option>300</option>
+  </select>
+     Create Modal Dialog Box
+
+     本視窗(父):<input id="txtParent" type="text" />
+ <input type="button" value="打開視窗" onclick="fnOpen()">
+
+     來自子視窗:<div id="divChild"></div>
+</form>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Javascript] function</title>
+</head>
+<body>
+    <button id='MyButton'>Hello</button>
+    <script>
+
+
+        //Creating an unnamed function
+        var x = function(y){
+            return y * y;
+        };
+
+        //alert(x(2));
+        console.log(x(2));
+
+        //Using a function as a callback
+        // var elements = document.getElementsByTagName('button');
+        // for(var i=0; i<elements.length;i++){
+        //     elements[i].addEventListener('click', function(event){
+        //         console.log('button is clicked!');
+        //         alert('button is clicked!');
+        //     });
+        // }
+
+        var button = document.getElementById('MyButton');
+        button.addEventListener('click', function(event){ 
+            alert('Hello World!');
+        });
+        
+    </script>
+</body>
+</html>

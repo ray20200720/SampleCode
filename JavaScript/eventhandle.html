@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id='button'>Say Something</button>
+    <script>
+        // 內建的 event-handler 只能加載一個函式，如果註冊了新的函式，新函式會取代原有的函式。
+        // 點擊 button 後只會印出 "熊福利"
+        // var btn = document.getElementById('button');
+        // btn.onclick = function () {
+        //     alert('福利熊');
+        // };
+
+        // btn.onclick = function () {
+        //     alert('熊福利');
+        // };
+
+        // 另外一個內建的 addEventListener 方法，可以在一個元素上註冊多個事件函式。
+        var btn = document.getElementById('button');
+        btn.addEventListener('click', function(){
+            alert('福利熊');
+        });
+        btn.addEventListener('click', function(){
+            alert('熊福利');
+        });
+    </script>
+</body>
+</html>

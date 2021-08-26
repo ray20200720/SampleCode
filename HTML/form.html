@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"></html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form action="/formprocess.php" method="post"> -->
+    <form method="post">
+        <p>Name:</p>
+        <p><input type="text" name="name" value="你的名字"></p>
+    
+        <p>Email:</p>
+        <p><input name="species" type="text"></p>
+    
+        <p>Comments: </p>
+        <p><textarea name="comments" rows="5" cols="20">你的留言</textarea></p>
+    
+        <p>請問你最有興趣學習的技術:</p>
+        <p><input type="radio" name="interest" value="html"> HTML</p>
+        <p><input type="radio" name="interest" value="css"> CSS</p>
+        <p><input type="radio" name="interest" value="js"> JavaScript</p>
+    
+        
+        <p><input type="submit" value="input submit"></p>   <!-- 會refresh 變量會清除 -->
+        <p><input type="button" value="input btn"></p>   <!-- 不會refresh 變量不會清除 -->
+
+        <button type="button">btn button</button>       <!-- 不會refresh 變量不會清除 -->
+        <button>btn default</button>                    <!-- 會refresh 變量會清除 -->
+        <button type="submit">btn submit</button>       <!-- 會refresh 變量會清除 -->
+
+
+    </form>
+</body>
+</html>
