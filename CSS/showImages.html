@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <style type="text/css">
+	  .jump_img
+		 {
+       position:absolute;
+			 z-index:99999;
+			 width:80%;
+			 height:80%;
+			 top:50%;
+			 left:50%;
+			 margin:-20% 0 0 -40%;
+		 }
+    </style>
+  </head>
+  <body>
+  <img id="myImg" src="" class="jump_img" hidden=true>
+  <button onclick="myFunction()">Click me</button>
+  <script type="text/javascript">
+	$(document).ready(function() {
+		//倒計時消失      使用 毫秒值
+		//$(".jump_img").delay(500).fadeOut();
+    //$(".jump_img").delay(5000).fadeIn();
+	})
+
+  function myFunction() {
+    document.getElementById("myImg").src = "../images/correct.png";
+    document.getElementById("myImg").hidden = false;
+  }
+</script>
+  </body>
+</html>

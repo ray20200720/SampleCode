@@ -1,0 +1,99 @@
+#menu {
+    margin: 0px;
+    border-bottom: 3px #cdcdcd solid;
+    background-color: #808080;
+    border: 0px #ccc solid;
+}
+#menu ul li a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #fff;
+    padding: 3px 18px;
+    background-color: #A00200;
+    border-bottom: 0px solid #ccc;
+    float: left;
+    padding: 8px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline;
+}
+
+
+
+
+.btn-cta {
+    background-color: #feac32;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fecc4c),to(#ffac33));
+    background-image: linear-gradient(#fecc4c,#ffac33);
+    border-width: 3px;
+    border-color: #feac32;
+    color: #0a0a23!important;
+}
+.btn, button, input[type=submit] {
+    background-color: var(--quaternary-background);
+    border-width: 3px;
+    color: var(--secondary-color);
+    border-radius: 0;
+    text-decoration: none;
+    white-space: pre-line;
+}
+
+.btn, .modal-footer, .modal-header, button, input[type=submit] {
+    border-color: var(--secondary-color);
+}
+
+.btn-cta-big {
+    font-size: 1.3rem;
+}
+
+.btn-cta-big {
+    max-height: 100%;
+    font-size: 1.5rem;
+    white-space: normal;
+    width: 100%;
+}
+.signup-btn {
+    padding: 4px 12px;
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 18px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+<a data-test-label="landing-big-cta" href="/learn" class="btn-cta-big btn-block signup-btn btn-cta btn btn-default">Get started (it's free)</a>
