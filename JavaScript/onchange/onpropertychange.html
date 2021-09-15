@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="textfield"  oninput="document.getElementById('webtest').innerHTML=this.value;" onpropertychange="document.getElementById('webtest').innerHTML=this.value;"/>
+    <div>您输入的值为：<span id="webtest"></span></div>
+    <br /><br /><br /><br /><br />
+    <input type="text" name="textfield" id="mytext" />
+    <div>您输入的值为：<span id="test"></span></div>
+    <script type="text/javascript">
+        immediately();
+        function immediately() {
+            element = document.getElementById("mytext");
+            if (window.ActiveXObject) {
+                element.onpropertychange = webChange;
+            } else {
+                element.addEventListener("input", webChange, false);
+            }
+        }
+        function webChange() {
+            if (element.value) {
+                document.getElementById("test").innerHTML = element.value;
+            };
+        }
+    </script>
+    
+    
+</body>
+</html>
