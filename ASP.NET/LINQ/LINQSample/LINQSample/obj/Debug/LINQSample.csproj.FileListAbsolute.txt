@@ -1,0 +1,6 @@
+D:\Ray\MyProject\GitHub\ray20200720\SampleCode\ASP.NET\LINQ\LINQSample\LINQSample\bin\Debug\LINQSample.exe.config
+D:\Ray\MyProject\GitHub\ray20200720\SampleCode\ASP.NET\LINQ\LINQSample\LINQSample\bin\Debug\LINQSample.exe
+D:\Ray\MyProject\GitHub\ray20200720\SampleCode\ASP.NET\LINQ\LINQSample\LINQSample\bin\Debug\LINQSample.pdb
+D:\Ray\MyProject\GitHub\ray20200720\SampleCode\ASP.NET\LINQ\LINQSample\LINQSample\obj\Debug\LINQSample.csprojResolveAssemblyReference.cache
+D:\Ray\MyProject\GitHub\ray20200720\SampleCode\ASP.NET\LINQ\LINQSample\LINQSample\obj\Debug\LINQSample.exe
+D:\Ray\MyProject\GitHub\ray20200720\SampleCode\ASP.NET\LINQ\LINQSample\LINQSample\obj\Debug\LINQSample.pdb

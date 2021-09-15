@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .div {
+            width: 400px;
+            border: 1px solid #000;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .keep-all {
+		    word-break: keep-all;
+	    }
+
+        .break-all {
+		    word-break: break-all;
+	    }
+    </style>
+</head>
+<body>
+    <h3>未使用word-break</h3>
+    <div class="div">
+        word-break 屬性主要是用來設定亞洲語言(Chinese, Japan, Korea)及非亞洲語言文字的斷行規則。這邊有一段很長長長長長長長長長長長長長長長長長長長長長長的中文。
+	</div>
+    <h3>使用word-break:keep-all</h3>
+    <div class="div keep-all">
+        word-break 屬性主要是用來設定亞洲語言(Chinese, Japan, Korea)及非亞洲語言文字的斷行規則。這邊有一段很長長長長長長長長長長長長長長長長長長長長長長的中文。
+	</div>
+
+    <h3>使用word-break: break-all</h3>
+    <div class="div break-all">
+        word-break 屬性主要是用來設定亞洲語言(Chinese, Japan, Korea)及非亞洲語言文字的斷行規則。這邊有一段很長長長長長長長長長長長長長長長長長長長長長長的中文。
+	</div>
+
+</body>
+</html>

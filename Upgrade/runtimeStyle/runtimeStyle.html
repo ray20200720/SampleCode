@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script language="javascript">
+        // process tr backgrounds and cursor
+        var trarray, i, normalColor;
+        trarray = document.getElementsByTagName("tr");
+        <%
+            // firefox or IE?
+            String useragent = request.getHeader("user-agent");
+            if (useragent.indexOf("Firefox") == -1) {
+        %>
+        for (i=0; i<trarray.length; i++) {
+            if (trarray[i].id != "roottr") {
+                trarray[i].attachEvent("onmouseover", ProcessMouseOver);
+                trarray[i].attachEvent("onmouseout", ProcessMouseOut);
+            }
+        }
+    
+        function ProcessMouseOver(event)
+        {
+            if (event.srcElement.tagName.toLowerCase() == "td") {
+                normalColor = event.srcElement.parentElement.style.backgroundColor; 
+                event.srcElement.parentElement.runtimeStyle.backgroundColor  = "#F7D12A";
+                event.srcElement.parentElement.runtimeStyle.cursor = "pointer";
+            }
+            if (event.srcElement.tagName.toLowerCase() == "a" || event.srcElement.tagName.toLowerCase() == "img") {
+                normalColor = event.srcElement.parentElement.parentElement.style.backgroundColor; 
+                event.srcElement.parentElement.parentElement.runtimeStyle.backgroundColor  = "#F7D12A";
+                event.srcElement.parentElement.parentElement.runtimeStyle.cursor = "pointer";
+            }
+    
+        }
+    
+        function ProcessMouseOut(event)
+        {
+            if (event.srcElement.tagName.toLowerCase() == "td") {
+                event.srcElement.parentElement.runtimeStyle.backgroundColor  = normalColor;
+                event.srcElement.parentElement.runtimeStyle.cursor = "";
+            }
+            if (event.srcElement.tagName.toLowerCase() == "a" || event.srcElement.tagName.toLowerCase() == "img") {
+                event.srcElement.parentElement.parentElement.runtimeStyle.backgroundColor  = normalColor;
+                event.srcElement.parentElement.parentElement.runtimeStyle.cursor = "";
+            }
+        }
+        <%
+            } else {
+        %>
+        for (i=0; i<trarray.length; i++) {
+            if (trarray[i].id != "roottr") {
+                trarray[i].addEventListener("mouseover", ProcessMouseOver, false);
+                trarray[i].addEventListener("mouseout", ProcessMouseOut, false);
+            }
+        }
+    
+        function ProcessMouseOver(event)
+        {
+            if (event.target.tagName.toLowerCase() == "td") {
+                normalColor = event.target.parentNode.style.backgroundColor; 
+                event.target.parentNode.style.backgroundColor  = "#F7D12A";
+                event.target.parentNode.style.cursor = "pointer";
+            }
+            if (event.target.tagName.toLowerCase() == "a" || event.target.tagName.toLowerCase() == "img") {
+                normalColor = event.target.parentNode.parentNode.style.backgroundColor; 
+                event.target.parentNode.parentNode.style.backgroundColor  = "#F7D12A";
+                event.target.parentNode.parentNode.style.cursor = "pointer";
+            }
+    
+        }
+    
+        function ProcessMouseOut(event)
+        {
+            if (event.target.tagName.toLowerCase() == "td") {
+                event.target.parentNode.style.backgroundColor  = normalColor;
+                event.target.parentNode.style.cursor = "";
+            }
+            if (event.target.tagName.toLowerCase() == "a" || event.target.tagName.toLowerCase() == "img") {
+                event.target.parentNode.parentNode.style.backgroundColor  = normalColor;
+                event.target.parentNode.parentNode.style.cursor = "";
+            }
+        }
+        <%
+            }
+        %>
+        </script>
+</body>
+</html>

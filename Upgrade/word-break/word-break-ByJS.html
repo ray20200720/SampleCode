@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>字母數字的換行問題</title>
+<style>
+p{ width:300px; border:1px solid #000;word-wrap: break-word}
+</style>
+<script language="javascript">
+   //aka makeDesignerHappy(dEl);
+      function breakWord(dEl){
+        
+        
+        if(!dEl || dEl.nodeType !== 1){
+          
+          return false;
+        
+        } else if(dEl.currentStyle && typeof dEl.currentStyle.wordBreak === 'string'){
+          
+          //Lazy Function Definition Pattern, Peter's Blog
+          //From http://peter.michaux.ca/article/3556
+          
+          breakWord = function(dEl){
+            //For Internet Explorer
+            dEl.runtimeStyle.wordBreak = 'break-all';
+            return true;
+          }
+          
+          return breakWord(dEl);
+         
+        }else if(document.createTreeWalker){
+       
+          //Faster Trim in Javascript, Flagrant Badassery
+          //http://blog.stevenlevithan.com/archives/faster-trim-javascript
+          
+          var trim = function  (str) {
+            str = str.replace(/^\s\s*/, '');
+            var ws = /\s/,
+            i = str.length;
+            while (ws.test(str.charAt(--i)));
+            return str.slice(0, i + 1);
+          }
+          
+          //Lazy Function Definition Pattern, Peter's Blog
+          //From http://peter.michaux.ca/article/3556
+          
+          breakWord = function(dEl){
+            
+            //For Opera, Safari, and Firefox
+            var dWalker = document.createTreeWalker(dEl, NodeFilter.SHOW_TEXT, null, false);
+            var node,s,c = String.fromCharCode('8203');
+            while (dWalker.nextNode())
+            {
+              node = dWalker.currentNode;
+              //we need to trim String otherwise Firefox will display 
+              //incorect text-indent with space characters
+              s = trim( node.nodeValue ) .split('').join(c);
+              node.nodeValue = s;
+            }
+            return true;
+          }
+          
+          return breakWord(dEl);
+          
+          
+        }else{
+          return false;
+        }
+      }
+</script>
+</head>
+<body>
+<plass="break-ord">
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+</p>
+      <script language="javascript">
+      //Break All Words
+      void function(){
+        var aEl = document.getElementsByTagName('p');
+        var dEl,i;
+        var sName = "break-word";
+        var oReg =  new RegExp('(\\s|^)' + sName + '(\\s|$)');
+        for(i=0;dEl = aEl[i];i++){
+          if(dEl.className.match(oReg)){
+            breakWord(dEl);
+          }
+        }
+      }();
+</script>
+</body>
+</html>

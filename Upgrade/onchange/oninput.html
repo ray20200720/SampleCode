@@ -1,0 +1,19 @@
+<head>
+    <script type="text/javascript">
+    // Firefox, Google Chrome, Opera, Safari, Internet Explorer from version 9
+        function OnInput (event) {
+            alert ("OnInput The new content: " + event.target.value);
+        }
+    // Internet Explorer
+        function OnPropChanged (event) {
+            if (event.propertyName.toLowerCase () == "value") {
+                alert ("OnPropChanged The new content: " + event.srcElement.value);
+            }
+        }
+    </script>
+</head>
+<body>
+    Please modify the contents of the text field.
+    <input type="text" oninput="OnInput (event)" onpropertychange="OnPropChanged (event)"
+     value="Text field" />
+</body>
