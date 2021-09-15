@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://code.jquery.com/jquery-1.7.1.js" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-1.4.1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="data"></div>
+    <button onclick="btnClick()">ajax test</button>
+    <script>
+
+    function btnClick(){
+
+        $.ajax({
+            url:'http://10.96.183.11:5600/PCBTracing/QueryMBSNWorkorderInfo?mbSN=2W18M10001',
+            method:'GET',
+            dataType: 'json',
+            data: '',
+            success:function(data){alert('success'); console.log(data); },
+            error:function(err){alert('error');console.log(err); }
+        });
+    }
+
+    </script>
+    
+</body>
+</html>
