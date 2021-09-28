@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="showCookies()">Show cookies</button>
+    <button onclick="findCookie()">Find cookie</button>
+    <button onclick="doOnce()">Only do something once</button>
+    <button onclick="clearOutput()">Clear Output</button>
+    <button onclick="resetOnce()">Reset Once</button>
+    <button onclick="clearCookies()">Clear Cookies</button>
+
+    <button onclick="Encode()">Encode</button>
+    <button onclick="Decode()">Decode</button>
+    <div>
+        <code id="cookies"></code>
+        <code id="do-once"></code>
+        
+        <p>
+            <code id="before-encode">Before Encode:</code>
+        </p>
+        <p>
+            <code id="after-encode">After Encode:</code>
+        </p>
+        <p>
+            <code id="encode">Encode: </code>
+        </p>
+        <p>
+            <code id="decode">Decode: </code>
+        </p>
+    </div>
+    <script>
+        //document.cookie = "OPCP104=Travel Card;"  //Travel%20Card
+        //document.cookie = "OPCP104=中文;"           //%E4%B8%AD%E6%96%87
+        document.cookie = "OPCP104=中 文;"            //%E4%B8%AD%20%E6%96%87
+
+
+        document.cookie = "name=oeschger; SameSite=None; Secure";
+        document.cookie = "favorite_food=tripe; SameSite=None; Secure";
+
+        //document.cookie = "test1=Hello; test2=World; SameSite=None; Secure";
+        document.cookie = "test1=Hello; SameSite=None; Secure";
+        document.cookie = "test2=World; SameSite=None; Secure";
+        var cookieValue = document.cookie
+                                .split('; ')
+                                .find(row => row.startsWith('test2='))
+                                .split('=')[1];
+
+        function showCookies(){
+            const output = document.getElementById('cookies');
+            output.textContent = '> ' + document.cookie;
+        }
+
+        function findCookie(){
+            const output = document.getElementById('cookies');
+            output.textContent = '> ' + cookieValue;
+        }
+
+        function doOnce(){
+            if (!document.cookie.split('; ').find(row => row.startsWith('CustomedoSomethingOnlyOnce'))) {
+                // Note that we are setting `SameSite=None;` in this example because the example
+                // needs to work cross-origin.
+                // It is more common not to set the `SameSite` attribute, which results in the default,
+                // and more secure, value of `SameSite=Lax;`
+                //document.cookie = "doSomethingOnlyOnce=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure";
+                document.cookie = "CustomedoSomethingOnlyOnce=123; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure";
+
+                const output = document.getElementById('do-once')
+                output.textContent = '> Do something here!'
+            }
+        }
+
+        function clearOutput(){
+            var output = document.getElementById('cookies');
+            output.textContent = '';
+
+            document.getElementById('do-once').textContent = '';
+        }
+
+        function clearCookies(){
+            var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+            if(keys) {
+                for(var i = keys.length; i--; ){
+                    document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString();
+                }
+            }
+            var output = document.getElementById('cookies');
+            output.textContent = '';
+
+            cookieValue = "";
+        }
+
+        function resetOnce(){
+            document.cookie = "CustomedoSomethingOnlyOnce=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure";
+            
+            const output = document.getElementById('do-once');
+            output.textContent = '> Reset!'
+        }
+
+        function Encode(){
+            var value = document.cookie.split('; ')
+                                        .find(row => row.startsWith('OPCP104='))
+                                        .split('=')[1];
+            document.getElementById('before-encode').textContent = value;
+            document.getElementById('after-encode').textContent = encodeURIComponent(value);
+            // output.textContent = "";
+            // output.textContent += 'Before Encode :> ' + value + '' ;
+            // output.textContent += 'After Encode:' + encodeURIComponent(value);
+        }
+
+        function Decode(){
+            var value = document.cookie.split('; ')
+                                        .find(row => row.startsWith('OPCP104='))
+                                        .split('=')[1];
+            value = encodeURIComponent(value)                         
+            document.getElementById('encode').textContent = value;
+            document.getElementById('decode').textContent  = decodeURIComponent(value);
+        }
+
+    </script>
+</body>
+</html>
